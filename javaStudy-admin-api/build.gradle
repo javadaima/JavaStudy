@@ -10,7 +10,15 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 repositories {
+    mavenLocal()
     mavenCentral()
+    maven {
+        url 'https://maven.aliyun.com/repository/public'
+    }
+    maven {
+        url 'https://maven.aliyun.com/repository/spring-plugin'
+    }
+
 }
 
 dependencies {
@@ -28,4 +36,10 @@ dependencies {
     implementation 'org.springframework.session:spring-session-core'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
+    //热部署包
+    compile("org.springframework.boot:spring-boot-devtools")
+    //gradle mysql默认位最新版本8.0.13,我服务器mysql版本是8.0.12,此处引入8.0.12覆盖自动导入的包
+    compile "mysql:mysql-connector-java:5.1.28"
+    //Druid,阿里的连接池
+    compile group: 'com.alibaba', name: 'druid-spring-boot-starter', version: '1.1.10'
 }
